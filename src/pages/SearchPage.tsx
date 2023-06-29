@@ -14,7 +14,7 @@ import { useSearchContext } from "../context/SearchContext";
 const warningColor = red[400];
 
 const SearchPage = () => {
-  const [isLoading, setIsloading] = useState(false);
+  const [isLoading, setIsloading] = useState(true);
   const [meals, setMeals] = useState<Meal[]>([]);
   const { text, setSearchText } = useSearchContext();
 
@@ -26,6 +26,7 @@ const SearchPage = () => {
   }, [text]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIsloading(true);
     setSearchText(event.target.value);
   };
 
