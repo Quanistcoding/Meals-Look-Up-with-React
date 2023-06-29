@@ -5,23 +5,28 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Meal, getMealsByName } from "../services/axiosClient";
 import MealCard from "../components/MealCard";
 import { red } from "@mui/material/colors";
+import { useSearchContext } from "../context/SearchContext";
 
 const warningColor = red[400];
 
 const SearchPage = () => {
   const [isLoading, setIsloading] = useState(false);
   const [meals, setMeals] = useState<Meal[]>([]);
+  const { text, setSearchText } = useSearchContext();
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIsloading(true);
-    getMealsByName(event.target.value).then((res) => {
+  useEffect(() => {
+    getMealsByName(text).then((res) => {
       setMeals(res.data.meals);
       setIsloading(false);
     });
+  }, [text]);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchText(event.target.value);
   };
 
   return (
@@ -29,10 +34,11 @@ const SearchPage = () => {
       <Box paddingTop={2} paddingX={{ xs: 1, sm: 2, md: 5, lg: 10 }}>
         <TextField
           id="outlined-basic"
-          label="Outlined"
+          label="Search By Name..."
           variant="outlined"
           fullWidth
           onChange={handleChange}
+          value={text}
         />
       </Box>
       {isLoading ? (
