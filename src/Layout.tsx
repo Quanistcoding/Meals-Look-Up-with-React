@@ -102,7 +102,7 @@ export default function Layout(props: Props) {
           {drawer}
         </Drawer>
       </Box>
-      <Box component="main" sx={{ p: 3 }}>
+      <Box component="main" sx={{ p: 3 }} style={{ width: "100%" }}>
         <Toolbar />
         <Outlet />
       </Box>
