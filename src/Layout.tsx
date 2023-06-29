@@ -11,7 +11,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import { AppBar, Link as MuiLink } from "@mui/material";
+import { AppBar } from "@mui/material";
 import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 
@@ -20,7 +20,11 @@ interface Props {
 }
 
 const drawerWidth = 240;
-const navItems = ["Home", "About", "Contact"];
+
+const navItems = [
+  { label: "Home", path: "/" },
+  { label: "Search", path: "/search" },
+];
 
 export default function Layout(props: Props) {
   const { window } = props;
@@ -38,9 +42,13 @@ export default function Layout(props: Props) {
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item} />
+          <ListItem key={item.path} disablePadding>
+            <ListItemButton
+              sx={{ textAlign: "center" }}
+              component={Link}
+              to={item.path}
+            >
+              <ListItemText primary={item.label} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -73,12 +81,16 @@ export default function Layout(props: Props) {
             MUI
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            <Button color="inherit" component={Link} to={"/"}>
-              Home
-            </Button>
-            <Button color="inherit" component={Link} to={"/about"}>
-              About
-            </Button>
+            {navItems.map((item) => (
+              <Button
+                color="inherit"
+                component={Link}
+                to={item.path}
+                key={item.path}
+              >
+                {item.label}
+              </Button>
+            ))}
           </Box>
         </Toolbar>
       </AppBar>

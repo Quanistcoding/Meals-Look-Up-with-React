@@ -54,9 +54,9 @@ export const getMealsById = (id:string) => {
   return instance.get<{meals:Meal[]}>("lookup.php?i=" + id);
 }
 
-
-
-
+export const getMealsByName = (name:string) => {
+  return instance.get<{meals:Meal[]}>("search.php?s=" + name);
+}
 
 
 
