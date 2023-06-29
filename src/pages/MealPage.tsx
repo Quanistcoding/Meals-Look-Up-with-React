@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from "react";
-import { Meal, getMealsById } from "../services/axiosClient";
 import { useParams } from "react-router-dom";
 import { Box, CircularProgress, Typography } from "@mui/material";
 import useMeal from "../hooks/useMeal";

@@ -1,6 +1,4 @@
 import { Grid } from "@mui/material";
-import { Meal, getMealsByCategory } from "../services/axiosClient";
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import MealCard from "../components/MealCard";
 import CardSkeletons from "../components/CardSkeletons";

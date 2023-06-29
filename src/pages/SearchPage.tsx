@@ -5,7 +5,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Meal, getMealsByName } from "../services/axiosClient";
 import MealCard from "../components/MealCard";
 import { red } from "@mui/material/colors";
